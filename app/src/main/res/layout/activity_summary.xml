@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Summary"
+    >
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="25dp"
+        android:text="Summary Page"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="274dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="84dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginBottom="66dp"
+        android:text="Total"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_order_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/total_price_Tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="66dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/summit_btn"
+        app:layout_constraintEnd_toEndOf="@+id/summit_btn" />
+
+    <Button
+        android:id="@+id/edit_order_btn"
+        android:layout_width="wrap_content"
+        android:onClick="editOrderBtn"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:text="Edit order"
+        app:layout_constraintBottom_toBottomOf="@+id/summit_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/summit_btn" />
+
+    <Button
+        android:id="@+id/summit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="summitBtn"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="141dp"
+        android:text="summit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
