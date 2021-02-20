@@ -1,5 +1,6 @@
 package com.example.assignment1;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
@@ -31,7 +32,7 @@ public class SecondActivity extends AppCompatActivity {
     Boolean steak = false;
 
 
-
+    private     ArrayList<String> dish_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
 
+        dish_list = new ArrayList<>();
 
 
 
@@ -57,8 +59,7 @@ public class SecondActivity extends AppCompatActivity {
             isCheckboxSelcted();
 
 
-            intent.putExtra("drink", drink);
-            intent.putExtra("dish", dish);
+            intent.putStringArrayListExtra("dish", dish_list);
             intent.putExtra("price", total_price);
 
 
@@ -83,6 +84,22 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+
+        if (requestCode == RequestCode) {
+            if (resultCode == RESULT_OK) {
+                dish_list = data.getStringArrayListExtra("clear_dish");
+
+                System.out.println(dish_list);
+            }
+        }
+    }
+
     public void radioButtonChecked(View view) {
 
 
@@ -99,13 +116,16 @@ public class SecondActivity extends AppCompatActivity {
 
                 drink = "Tea";
 
-                drink_price += 1.7;
+               drink_price = 1.7;
 
+                dish_list.add("Tea");
 
             }
             else {
                 drink = "";
-                drink_price -= 1.7;
+                drink_price = -1.7;
+
+                dish_list.remove("Tea");
             }
             break;
 
@@ -116,12 +136,18 @@ public class SecondActivity extends AppCompatActivity {
                 drink = "Coffee";
 
                 drink_price = 1.8;
+
+
+                dish_list.add("Coffee");
             }
 
             else {
 
                 drink = "";
-                drink_price -= 1.8;
+                drink_price = -1.8;
+
+
+                dish_list.remove("Coffee");
             }
             break;
         case R.id.orange_radio:
@@ -133,11 +159,16 @@ public class SecondActivity extends AppCompatActivity {
 
                 drink_price = 2;
 
+
+                dish_list.add("Orange Juice");
+
             }
             else {
 
                 drink = "";
-                drink_price -= 2.0;
+                drink_price = -2.0;
+
+                dish_list.remove("Orange Juice");
 
             }
             break;
@@ -149,12 +180,18 @@ public class SecondActivity extends AppCompatActivity {
 
                 drink = "Apple Juice";
                 drink_price = 3;
+
+
+                dish_list.add("Apple Juice");
             }
 
             else {
 
                 drink = "";
-                drink_price -= 3.0;
+                drink_price = -3.0;
+
+
+                dish_list.remove("Apple Juice");
             }
             break;
         }
@@ -170,11 +207,6 @@ public class SecondActivity extends AppCompatActivity {
 
         int id = checkBox.getId();
 
-
-
-
-
-
         switch (id) {
 
             case R.id.fish_cb:
@@ -187,7 +219,7 @@ public class SecondActivity extends AppCompatActivity {
                     fish = true;
 
 
-
+                    dish_list.add("Fish");
 
 
                 }
@@ -198,7 +230,7 @@ public class SecondActivity extends AppCompatActivity {
                     fish = false;
 
 
-
+                    dish_list.remove("Fish");
                 }
                 break;
 
@@ -210,7 +242,7 @@ public class SecondActivity extends AppCompatActivity {
                     food_price += 11;
                     chicken = true;
 
-
+                    dish_list.add("Chicken");
 
                 }
                 else {
@@ -218,7 +250,7 @@ public class SecondActivity extends AppCompatActivity {
                     dish = "";
                     food_price -= 11;
                     chicken = false;
-
+                    dish_list.remove("Chicken");
 
                 }
                 break;
@@ -231,7 +263,7 @@ public class SecondActivity extends AppCompatActivity {
                     food_price += 10;
                     veg = true;
 
-
+                    dish_list.add("Roasted Veggies");
 
                 }
                 else {
@@ -240,7 +272,7 @@ public class SecondActivity extends AppCompatActivity {
                     food_price -= 10;
                     veg = false;
 
-
+                    dish_list.remove("Roasted Veggies");
                 }
                 break;
 
@@ -253,6 +285,9 @@ public class SecondActivity extends AppCompatActivity {
                     food_price += 15;
                     steak = true;
 
+                    dish_list.add("Grilled Steak");
+
+
                 }
                 else {
 
@@ -261,6 +296,8 @@ public class SecondActivity extends AppCompatActivity {
                     food_price -= 15;
 
                     steak = false;
+
+                    dish_list.remove("Grilled Steak");
 
                 }
                 break;

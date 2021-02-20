@@ -8,16 +8,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter<Stirng> extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
-    List<OrderList> list;
+    private ArrayList<Stirng> list;
 
-    MyAdapter(List<OrderList> list) {
 
-        this.list = list;
+    MyAdapter(ArrayList<String> list) {
+
+        this.list = (ArrayList<Stirng>) list;
     }
 
 
@@ -38,11 +40,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         @Override
         public void onBindViewHolder (@NonNull ViewHolder holder,int position){
 
+            String text = (String) list.get(position);
 
-
-            holder.dish_Name.setText(list.get(position).getDish_name());
-            holder.drink_Name.setText(list.get(position).getDrink_name());
-
+            holder.dish_Name.setText(text);
 
         }
 
@@ -56,16 +56,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
             TextView dish_Name;
-            TextView drink_Name;
+
 
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
 
                 dish_Name = itemView.findViewById(R.id.dish_tv);
-
-                drink_Name = itemView.findViewById(R.id.drink_tv);
-
 
             }
         }

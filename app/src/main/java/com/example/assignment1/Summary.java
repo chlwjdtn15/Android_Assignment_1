@@ -19,7 +19,7 @@ public class Summary extends AppCompatActivity {
     String dish = "";
     double total_price = 0;
 
-
+    private ArrayList<String> dish_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +27,14 @@ public class Summary extends AppCompatActivity {
         setContentView(R.layout.activity_summary);
 
 
+
+
         TextView totalpriceTV = (TextView)findViewById(R.id.total_price_Tv);
 
         Intent intent = getIntent();
 
 
-
-        drink = intent.getStringExtra("drink");
-        dish = intent.getStringExtra("dish");
+        dish_list = intent.getStringArrayListExtra("dish");
         total_price = intent.getDoubleExtra("price", 0);
 
 
@@ -47,52 +47,31 @@ public class Summary extends AppCompatActivity {
 
 
 
-
-
-
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
 
-        List<OrderList> list = getData();
-        MyAdapter adapter = new MyAdapter(list);
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(new MyAdapter(dish_list));
 
 
     }
 
-    public List<OrderList> getData(){
-
-
-        List<OrderList> orderLists = new ArrayList<>();
-
-
-
-       OrderList o1 = new OrderList(dish, drink);
-
-       orderLists.add(o1);
-
-
-
-        return  orderLists;
-
-
-
-    }
 
     public void editOrderBtn(View view) {
 
         Intent intent = new Intent();
 
+
+        dish_list.remove("Tea");
+        dish_list.remove("Coffee");
+        dish_list.remove("Orange Juice");
+        dish_list.remove("Apple Juice");
+
+        intent.putStringArrayListExtra("clear_dish", dish_list);
+
+        System.out.println(dish_list);
         setResult(RESULT_OK, intent);
         finish();
-
-
-
-
 
     }
 
